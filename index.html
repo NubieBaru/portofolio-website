@@ -1,13 +1,162 @@
-<!doctype html>
-<html>
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-  </head>
-  <body>
-    <h1 class="text-3xl font-bold underline">
-      Hello world!
-    </h1>
-  </body>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Belajar CSS Responsive</title>
+  <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <h2>Website aing</h2>
+    <ul class="nav-links">
+      <li>Home</li>
+      <li>About</li>
+      <li>Blog</li>
+      <li>Contact</li>
+    </ul>
+
+    <div class="menu-toggle">
+      ☰
+    </div>
+
+
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <h1>Belajar Web Development</h1>
+    <p>Mulai perjalanan menjadi Frontend Developer.</p>
+    <button>Mulai Belajar</button>
+  </section>
+
+  <!-- CARD SECTION -->
+
+  <section class="cards">
+    <div class="card">
+      <img src="https://picsum.photos/300/200">
+      <h3>Belajar HTML</h3>
+      <p>Dasar membuat struktur website.</p>
+      <button>Baca</button>
+
+    </div>
+
+    
+
+    <div class="card">
+      <img src="https://picsum.photos/300/201">
+      <h3>Belajar CSS</h3>
+      <p>Membuat tampilan website menarik.</p>
+      <button>Baca</button>
+    </div>
+
+    <div class="card">
+      <img src="https://picsum.photos/300/202">
+      <h3>Belajar JavaScript</h3>
+      <p>Membuat website menjadi interaktif.</p>
+      <button>Baca</button>
+    </div>
+
+    <div id="formKalkulator" class="card" style="display: grid;">
+      <!-- <img src="https://picsum.photos/300/202"> -->
+      <h3>Belajar Membuat Kalkulator</h3>
+      <p>Perhitungan sederhana</p>
+      <input type="text" id="angka1" placeholder="Angka 1">
+      <input type="text" id="angka2" placeholder="Angka 2">
+      <label><input type="radio" name="operator" value="+" checked> Tambah</label>
+      <label><input type="radio" name="operator" value="-"> Kurang</label>
+      <label><input type="radio" name="operator" value="*"> Kali</label>
+      <label><input type="radio" name="operator" value="/"> Bagi</label>
+      <button onclick="prosesHitung('formKalkulator')">Hitung</button>
+      <button class="clearBtn">Clear</button>
+      <p id="hasilKalkulator">0</p>
+    </div>
+
+    <div id="formDinamis" class="card">
+      <!-- <img src="https://picsum.photos/300/202"> -->
+      <h3>Belajar Membuat Form Dinamis</h3>
+      <p>Beberapa Jenis Perhitungan </p>
+      <!-- Dropdown pilihan -->
+
+      <select id="jenisHitung" onchange="updateForm()">
+        <option value="" selected>Pilih Disini</option>
+        <option value="kalkulator">Kalkulator (+)</option>
+        <option value="ganjilGenap">Cek Ganjil/Genap</option>
+        <option value="umur">Hitung Umur</option>
+        <option value="konversiWaktu">Konversi Waktu</option>
+      </select>
+      <div id="formInput"></div>
+      <p id="hasilFormDinamis">0</p>
+        <button onclick="prosesHitung('formDinamis')">Proses</button>
+        <button class="clearBtn">Clear</button>
+    </div>
+  
+    
+  </section>
+
+  <!-- FOOTER -->
+
+  <footer class="footer">
+    <p>© 2026 MyWebsite</p>
+  </footer>
+
+
+
+
+  <!-- <button style="margin-top: 20px;">Baca Artikel</button> -->
+
+  <!-- JS Menu Toogle -->
+  <script>
+
+    const toggle = document.querySelector(".menu-toggle");
+
+    const nav = document.querySelector(".nav-links");
+
+    toggle.addEventListener("click", () => {
+
+      nav.classList.toggle("active");
+
+    });
+
+
+    // function salam(nama) {
+    //    console.log("Halo " + nama);
+    // }
+
+    // salam("Armawan");
+    // salam("Budi");
+    // const hitung = () => {
+    //   let a = document.getElementById("angka1").value;
+    //   let b = document.getElementById("angka2").value;
+
+    // Validasi: cek apakah input kosong
+    //  if (a === "" || b === "") {
+    //     alert("Harap isi kedua angka terlebih dahulu!");
+    //     return; // hentikan fungsi
+    //  }
+
+    //  // Validasi angka
+    //  if (isNaN(a)) {
+    //     alert("Input pertama harus angka!");
+    //     document.getElementById("angka1").value = ""; // clear hanya input salah
+    //     return;
+    //  }
+
+    //  if (isNaN(b)) {
+    //     alert("Input kedua harus angka!");
+    //     document.getElementById("angka2").value = ""; // clear hanya input salah
+    //     return;
+    //  }
+
+
+
+  </script>
+  <script src="script.js"></script>
+
+</body>
+
 </html>
