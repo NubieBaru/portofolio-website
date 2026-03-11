@@ -1,0 +1,168 @@
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+font-family:Arial;
+background:#f4f4f4;
+}
+
+.navbar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center ;
+    padding:20px 50px;
+    background-color: #007bff;
+    color: aliceblue;
+}
+/* .navbar ul{
+    display: flex;
+    gap: 20px;
+    list-style: none;
+} */
+
+.nav-links{
+
+display:flex;
+list-style:none;
+gap:20px;
+
+}
+
+.menu-toggle{
+    display:none;
+    font-size:25px;
+    cursor:pointer;
+}
+
+@media (max-width:768px) {
+
+    .nav-links{
+
+        display:none;
+        flex-direction: column;
+        background:#861c1c;
+        position:absolute;
+        top:60px;
+        right:0;
+        width:200px;
+        padding:20px;
+    }
+
+    .menu-toggle{
+        display:block;
+        
+    }
+}
+
+.toggleTest{
+    cursor: pointer;
+}
+
+.nav-links.active{
+
+display:flex;
+
+}
+
+.hero{
+    text-align: center;
+    padding: 80px 20px;
+    background-color: aquamarine;
+}
+
+.hero h1{
+font-size:40px;
+}
+
+.hero p{
+margin-top:10px;
+}
+
+.hero button{
+
+margin-top:20px;
+
+padding:10px 20px;
+
+border:none;
+
+background:#007bff;
+
+color:white;
+
+border-radius:5px;
+
+}
+.cards {
+    display:grid;
+    grid-template-columns:1fr ;
+    /* justify-content:center; */
+    gap: 20px;
+    padding: 50px;
+
+}
+
+@media (min-width:768px) {
+    .cards{
+        grid-template-columns:repeat(2,1fr);
+        
+    }   
+}
+
+@media (min-width:1024px) {
+    .cards{
+        grid-template-columns: repeat(3,1fr);
+    }
+    
+}
+.card {
+    width: 300px;
+    height: 400px;
+    background-color: aqua;
+    border: 1px solid black;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    padding: 15px;  
+    transition:0.3s;
+}
+.card img {
+    width:100%;
+}
+.card h3 {
+    margin-top: 10px;
+}
+
+.card p{
+margin-top:10px;
+}
+.card button{
+    margin-top: 10px;
+    padding: 10px 15px;
+    border: none;
+    background:#007bff;
+    color: aliceblue;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.card:hover {
+    transform:translateY(-10px);
+}
+
+.card button:hover{
+background:#0056b3;
+}
+
+.footer{
+
+text-align:center;
+
+padding:20px;
+
+background:#333;
+
+color:white;
+
+}
