@@ -5,22 +5,26 @@ FORM CONFIG
 const formConfig = {
 
 kalkulator:[
-{label:"Angka 1",name:"num1"},
-{label:"Angka 2",name:"num2"},
+    {label:"Angka 1", name:"num1", type:"number"},
+    {label:"Angka 2", name:"num2", type:"number"},
+    {label:"Tambah (+)", name:"operator", type:"radio", value:"+"},
+    {label:"Kurang (-)", name:"operator", type:"radio", value:"-"},
+    {label:"Kali (*)", name:"operator", type:"radio", value:"*"},
+    {label:"Bagi (/)", name:"operator", type:"radio", value:"/"}
 
 ],
 
 ganjil:[
-{label:"Masukkan angka",name:"angka"}
+    {label:"Masukkan angka",name:"angka"}
 ],
 
 umur:[
-{label:"Tahun lahir",name:"tahun"}
+    {label:"Tahun lahir",name:"tahun"}
 ],
 
 bmi:[
-{label:"Berat badan",name:"berat"},
-{label:"Tinggi badan",name:"tinggi"}
+    {label:"Berat badan",name:"berat"},
+    {label:"Tinggi badan",name:"tinggi"}
 ]
 
 }
@@ -36,17 +40,37 @@ function generateForm(type){
 const fields = formConfig[type]
 
 let html=""
+let radioGroup = ""
 
-fields.forEach(field => {
+  fields.forEach(field => {
+    if(field.type === "radio"){
+      radioGroup += `
+        <label>
+          <input type="radio"
+          name="${field.name}"
+          value="${field.value}"
+          class="form-input"> ${field.label}
+        </label>
+      `
+    } else {
+      html += `
+        <input type="${field.type || 'number'}"
+        name="${field.name}"
+        class="form-input"
+        placeholder="${field.label}">
+      `
+    }
+  })
 
-html += `
-<input type="number"
-name="${field.name}"
-class="form-input"
-placeholder="${field.label}">
-`
-
-})
+  // bungkus semua radio dalam satu grup
+  if(radioGroup){
+    html += `
+      <fieldset class="radio-group">
+        <legend>Pilih Operasi</legend>
+        ${radioGroup}
+      </fieldset>
+    `
+  }
 
 return html
 
@@ -66,7 +90,13 @@ const data = {}
 
 inputs.forEach(input => {
 
-data[input.name] = Number(input.value)
+ if(input.type === "radio"){
+      if(input.checked){
+        data[input.name] = input.value
+      }
+    } else {
+      data[input.name] = Number(input.value)
+    }
 
 })
 
@@ -82,33 +112,39 @@ CALCULATION ENGINE
 
 const calculationEngine = {
 
-kalkulator(data){
+    kalkulator(data){
+        console.log(data)
+        switch(data.operator){
+            case "+": return data.num1 + data.num2
+            case "-": return data.num1 - data.num2
+            case "*": return data.num1 * data.num2
+            case "/": return data.num2 !== 0 ? data.num1 / data.num2 : "Error: bagi 0"
+            default: return "Pilih operator"
+        }
 
-return data.num1 + data.num2
+    },
 
-},
+    ganjil(data){
 
-ganjil(data){
+        return data.angka % 2 === 0 ? "Genap" : "Ganjil"
 
-return data.angka % 2 === 0 ? "Genap" : "Ganjil"
+    },
 
-},
+    umur(data){
 
-umur(data){
+        const year = new Date().getFullYear()
 
-const year = new Date().getFullYear()
+        return year - data.tahun
 
-return year - data.tahun
+    },
 
-},
+    bmi(data){
 
-bmi(data){
+        const tinggi = data.tinggi/100
 
-const tinggi = data.tinggi/100
+        return (data.berat/(tinggi*tinggi)).toFixed(2)
 
-return (data.berat/(tinggi*tinggi)).toFixed(2)
-
-}
+    }
 
 }
 
